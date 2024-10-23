@@ -25,6 +25,7 @@
                 if(isset($_SESSION['username'])){
                     if($_SESSION['username'] === 'Admin'){
                         echo "<li><a href='/Hotel/dashboard'>Dashboard</a></li>";
+                        echo "<li><a href='/Hotel/upload'>Upload</a></li>";
                     }
                 }
             ?>
@@ -47,6 +48,32 @@
         </div>
     </nav>
 
+    <div class="rooms">
+        <?php
+            require('../server.php');
+            $sql = "SELECT * FROM rooms";
+            $result = $conn->query($sql);
+
+            while($row = mysqli_fetch_assoc($result)){
+                echo "
+                    <div class='wrap'>
+                        <div class='card'>
+                                <div class='pic'>
+                                    <img src='../upload/{$row['img_src']}'>
+                                </div>
+                                <div class='detail'>
+                                    <h2>{$row['room_type']}</h2>
+                                    <h4>Price/Day: {$row['price']}</h4>
+                                    <h4>Room Number: {$row['room_number']}</h4>
+                                    <h4>Capacity: {$row['capacity']}</h4>
+                                    <h4>Status: {$row['status']}</h4>
+                                </div>
+                        </div>
+                    </div>
+                ";
+            }
+        ?>
+    </div>
     
 </body>
 </html>

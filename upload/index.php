@@ -1,33 +1,90 @@
+<?php
+    session_start();
+    if(isset($_SESSION['username'])){
+        if($_SESSION['username'] !== 'Admin'){
+            header('location: /Hotel/');
+        }
+    }else{
+        header('location: /Hotel/');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Room</title>
+    <title>Update Room</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-    <h1>Add Room Details</h1>
-    <form action="" method="post" enctype="multipart/form-data">
+<nav>
+        <i class='bx bxs-landmark'></i>
+        <ul>
+            <li><a href="/Hotel">Home</a></li>
+            <li><a href="/Hotel/booking">Booking</a></li>
+            <li><a href="/Hotel/register">Register</a></li>
+            <li><a href="/Hotel/login">Login</a></li>
+            <?php
+                if(isset($_SESSION['username'])){
+                    if($_SESSION['username'] === 'Admin'){
+                        echo "<li><a href='/Hotel/dashboard'>Dashboard</a></li>";
+                        echo "<li><a href='/Hotel/upload'>Upload</a></li>";
+                    }
+                }
+            ?>
+        </ul>
+        
+        <div class="userProfile">
+            <?php
+                if(isset($_SESSION['username'])){
+                    echo '<h2>'.$_SESSION['username'].'<h2/>';
+                    echo "<i class='bx bxs-user-circle' ></i>";
+                    echo "<div class='dropdown'>
+                            <form action='' method='post'>
+                                <button name='profile'>Profile</button>
+                                <button name='history'>History</button>
+                                <button name='logout'>Logout</button>
+                            </form>
+                        </div>";
+                }
+            ?>
+        </div>
+    </nav>
+    <div class="wrapForm">
+        <form action="" method="post" enctype="multipart/form-data">
+            
+            <div class="inputWrap">
+                <input type="text" name="room_number" placeholder="Room Number"required><br>
+            </div>
+            
+            <div class="inputWrap">
+                <input type="text" name="room_type" placeholder="Room Type"required><br>
+            </div>
+            
+            <div class="inputWrap">
+                <input type="number" name="price" placeholder="Price"required step="0.01"><br>
+            </div>
+            
+            <div class="inputWrap">
+                <input type="number" name="capacity" placeholder="Capacity"required><br>
+            </div>
 
-        <label for="room_number">Room Number:</label>
-        <input type="text" name="room_number" required><br>
+            <div class="inputWrap">
+                <input type="text" name="status" placeholder="Status"required><br>
+            </div>
+            
+            <div class="inputImgWrap">
+                <input type="file" name="img" placeholder="Image"required><br>
+            </div>
+            
+            <div class="buttonWrap">
+                <button name="submit">Add Room</button>
+            </div>
 
-        <label for="room_type">Room Type:</label>
-        <input type="text" name="room_type" required><br>
-
-        <label for="price">Price:</label>
-        <input type="number" name="price" required step="0.01"><br>
-
-        <label for="capacity">Capacity:</label>
-        <input type="number" name="capacity" required><br>
-
-        <label for="status">Status:</label>
-        <input type="text" name="status" required><br>
-
-        <label for="img">Image:</label>
-        <input type="file" name="img" required><br>
-
-        <input type="submit" name='submit' value="Add Room">
-    </form>
+        </form>
+    </div>
 </body>
 </html>
 
@@ -42,12 +99,10 @@ if(isset($_POST['submit'])){
     $price = $_POST['price'];
     $capacity = $_POST['capacity'];
     $status = $_POST['status'];
-
     $target_dir = "uploads/"; 
     $target_file = $target_dir . basename($_FILES["img"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
 
     $check = getimagesize($_FILES["img"]["tmp_name"]);
     if ($check === false) {

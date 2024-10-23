@@ -32,6 +32,7 @@
                 if(isset($_SESSION['username'])){
                     if($_SESSION['username'] === 'Admin'){
                         echo "<li><a href='/Hotel/dashboard'>Dashboard</a></li>";
+                        echo "<li><a href='/Hotel/upload'>Upload</a></li>";
                     }
                 }
             ?>

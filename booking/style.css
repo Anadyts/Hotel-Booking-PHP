@@ -48,6 +48,8 @@ li a:hover{
 body{
     margin: 0;
     background-color: whitesmoke;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
     
 }
 
@@ -100,3 +102,44 @@ body{
     display: block;
 }
 
+.wrap {
+    max-width: 400px;
+    margin: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.pic img {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #ccc;
+}
+
+.detail {
+    padding: 16px;
+}
+
+h2 {
+    color: #333;
+}
+
+h4 {
+    color: #666;
+    margin: 8px 0;
+}
+
+.rooms{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    text-transform: capitalize;
+}
