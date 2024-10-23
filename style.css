@@ -1,0 +1,150 @@
+nav{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    height: 7rem;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    position: sticky;
+    top: 0%;
+}
+
+nav ul{
+    display: flex;
+    align-items: center;
+    margin: 0;
+    margin-left: -3rem;
+}
+
+.bxs-landmark{
+    font-size: 4rem;
+    margin-left: 5rem;
+    color: rgb(255, 0, 0);
+}
+
+
+ul li{
+    margin-left: 4rem;
+    list-style: none;
+    transition: all .1s ease;
+}
+
+li a{
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+    
+}
+
+li:hover{
+    transform: scale(1.1);
+}
+
+li a:hover{
+    color: red;
+}
+
+
+body{
+    margin: 0;
+    background-color: whitesmoke;
+    
+}
+
+.userProfile {
+    margin-left: auto; 
+    margin-right: 5rem; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.bxs-user-circle{
+    font-size: 60px;
+    margin: 15px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.dropdown{
+    width: 100px;
+    height: 110px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    top: 60%;
+    right: 30%;
+    border: 1px solid rgba(0, 0, 0, 0.107);
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.4);
+    border-radius: 1rem;
+    text-align: center;
+    display: none;
+
+}
+
+.dropdown button{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    transition: .1s all ease;
+}
+
+.dropdown button:hover{
+    transform: scale(1.02);
+    color: red;
+}
+
+.userProfile:hover .dropdown{
+    display: block;
+}
+
+footer {
+    background-color: #111111;
+    padding: 20px;
+    text-align: left;
+    color: white;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.footer-container {
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+footer h2, h3 {
+    color: white;
+}
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    color: white;
+    text-align: center;
+    margin-top: 70px;
+}
+
+footer h2{
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+.quote-container {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    height: 10rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.quote {
+    font-size: 1.2em;
+    color: #000000;
+}
