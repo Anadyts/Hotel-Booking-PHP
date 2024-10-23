@@ -100,55 +100,6 @@ body{
     display: block;
 }
 
-footer {
-    background-color: #111111;
-    padding: 20px;
-    text-align: left;
-    color: white;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-.footer-container {
-    display: flex;
-    justify-content: space-evenly;
-    
-}
-
-footer h2, h3 {
-    color: white;
-}
-a {
-    color: white;
-    text-decoration: none;
-}
-
-.footer-bottom {
-    color: white;
-    text-align: center;
-    margin-top: 70px;
-}
-
-footer h2{
-    text-align: center;
-    color: rgb(255, 255, 255);
-}
-
-.quote-container {
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    height: 10rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-.quote {
-    font-size: 1.2em;
-    color: #000000;
-}
-
 .wrapForm{
     display: flex;
     justify-content: center;
@@ -156,12 +107,12 @@ footer h2{
     margin-top: 2rem;
 }
 
-form{
+.wrapForm form{
     background-color: white;
     padding: 5rem;
     border-radius: 3rem;
     text-align: center;
-    height: 550px ;
+    height: 600px ;
 }
 
 form i{
@@ -189,17 +140,32 @@ form i{
     transform: scale(1.02);
 }
 
-.inputImgWrap input{
-    width: 100px;
-    height: 40px;
-    border: none;
+.inputFileWrap{
+    margin-top: 2rem;
+}
+.custom-file-input {
+    display: none;
+}
+.custom-file-label {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    display: inline-block;
+    padding: 10px;
+    background-color: rgba(227, 227, 227, 0.639);
+    border-radius: 5px;
+    cursor: pointer;
     border-radius: 3rem;
     font-weight: bold;
-    transition: all .2s ease;
+    font-size: 15px;
+    transition: .2s all ease;
+}
+
+.custom-file-label:hover{
+    background-color: rgb(255, 0, 0);
+    transform: scale(1.1);
 }
 
 .buttonWrap{
-    margin-top: 3rem;
+    margin-top: 1.4rem;
     display: flex;
     justify-content: center;
 }

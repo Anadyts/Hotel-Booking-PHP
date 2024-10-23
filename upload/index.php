@@ -75,8 +75,9 @@
                 <input type="text" name="status" placeholder="Status"required><br>
             </div>
             
-            <div class="inputImgWrap">
-                <input type="file" name="img" placeholder="Image"required><br>
+            <div class="inputFileWrap">
+                <input type="file" class="custom-file-input" id="fileInput" name="img" required>
+                <label class="custom-file-label" for="fileInput">Choose File</label>
             </div>
             
             <div class="buttonWrap">
@@ -131,7 +132,7 @@ if(isset($_POST['submit'])){
 
     if ($uploadOk == 1) {
         if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
-            echo "The file " . htmlspecialchars(basename($_FILES["img"]["name"])) . " has been uploaded.";
+            
 
             
             $img_src = $target_file;
@@ -139,15 +140,11 @@ if(isset($_POST['submit'])){
             VALUES ('$room_number', '$room_type', '$price', '$capacity', '$status', '$img_src')";
 
             if ($conn->query($sql) === TRUE) {
-                echo "New room added successfully.";
+                
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
-        } else {
-            echo "Sorry, there was an error uploading your file.";
         }
-    } else {
-        echo "Sorry, your file was not uploaded.";
     }
     $conn->close();
     }
