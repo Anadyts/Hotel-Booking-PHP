@@ -75,41 +75,8 @@
 
         $sql = "SELECT * FROM profile WHERE id = '$id'";
         $result = $conn->query($sql);
-        if($result->num_rows > 0){
-            
-            while($row = $result->fetch_assoc()){
-                echo 
-            "
-            <div class='wrapForm'>
-                <form action='' method='post'>
-                    <h1>Profile</h1>
-                    <div class='inputWrap'>
-                        <input type='text' name='name' placeholder='Name' value = '{$row['name']}' disabled>
-                    </div>
-                    
-                    <div class='inputWrapRad'>
-                        <label>{$row['gender']}</label>
-                        
-                    </div>
-
-                    <div class='inputWrap'>
-                        <input type='tel' name='tel' placeholder='Telephone Number' value = '{$row['tel']}' disabled>
-                    </div>
-
-                    <div class='inputWrap'>
-                        <input type='email' name='email' placeholder='Email' value = '{$row['email']}' disabled>
-                    </div>
-
-                    <div class='buttonWrap'>
-                        <button name='edit'>Edit</button>
-                    </div>
-                </form>
-            </div>
-            
-            ";
-            }
-        }else{
-            echo 
+        
+        echo 
             "
             <div class='wrapForm'>
                 <form action='' method='post'>
@@ -144,7 +111,6 @@
             </div>
             
             ";
-        }
     
     ?>
 
@@ -159,14 +125,10 @@
         $tel = $_POST['tel'];
         $email = $_POST['email'];
 
-        $sql = "INSERT INTO profile(id, name, gender, tel, email) VALUES('{$_SESSION['id']}', '$name', '$gender', '$tel', '$email')"; 
+        $sql = "UPDATE profile SET name='$name', gender='$gender', tel = '$tel', email = '$email' WHERE id = '{$_SESSION['id']}'"; 
         $result = $conn->query($sql);
         header('location: /Hotel/profile');
         
-    }
-
-    if(isset($_POST['edit'])){
-        header('location: /Hotel/editProfile');
     }
 
 ?>

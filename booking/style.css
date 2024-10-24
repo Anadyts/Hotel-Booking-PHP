@@ -184,6 +184,7 @@ h4 {
     font-weight: bold;
     background-color: rgb(55, 145, 255);
     transition: all .2s ease;
+    cursor: pointer;
 }
 
 .customerManager button:hover{
