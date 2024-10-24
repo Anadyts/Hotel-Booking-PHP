@@ -109,8 +109,6 @@ if ($result->num_rows > 0) {
         </div>
         ";
     }
-} else {
-    echo "<p>No bookings found.</p>";
 }
 ?>
 
