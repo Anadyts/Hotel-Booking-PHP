@@ -17,6 +17,9 @@
     if(isset($_POST['history'])){
         header('location: /Hotel/history');
     }
+
+    
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,6 +67,56 @@
             ?>
         </div>
     </nav>
+    <div class="container">
+        
+    <?php
+$sql = "SELECT * FROM user_db WHERE username = '{$_SESSION['username']}'";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$id = $row['id'];
+
+$sql = "SELECT * FROM reserve WHERE user_id = '$id'";
+$result = $conn->query($sql);
+
+// เช็คว่ามีการจองหรือไม่
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $bookingId = $row['booking_id'];
+        $roomNumber = $row['room_number'];
+        $checkIn = $row['check_in_date'];
+        $checkOut = $row['check_out_date'];
+
+        $sql = "SELECT * FROM rooms WHERE room_number = '$roomNumber'";
+        $roomResult = $conn->query($sql);
+        $roomRow = $roomResult->fetch_assoc();
+        
+        $roomType = $roomRow['room_type'];
+        $price = $roomRow['price'];
+        $capacity = $roomRow['capacity'];
+        
+        echo 
+        "
+        <div class='card'>
+            <div class='title'>
+                <h3>#{$bookingId}</h3>
+                <h4>Room Number: {$roomNumber}</h4>
+                <h4>Check-In Date: {$checkIn}</h4>
+                <h4>Check-Out Date: {$checkOut}</h4>
+                <h4>Room Type: {$roomType}</h4>
+                <h4>Capacity: {$capacity}</h4>
+                <h4>Price: {$price}</h4>
+            </div>
+        </div>
+        ";
+    }
+} else {
+    echo "<p>No bookings found.</p>";
+}
+?>
+
+        
+        
+    </div>
 </body>
 </html>
 
