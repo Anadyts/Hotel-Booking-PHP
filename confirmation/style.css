@@ -132,6 +132,13 @@ body{
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.cancel:hover{
+    transform: scale(1.05);
+    background-color: rgb(255, 19, 19);
 }
 
 .cancel{
@@ -140,6 +147,11 @@ body{
 
 .confirm{
     background-color: rgb(88, 205, 255);
+}
+
+.confirm:hover{
+    transform: scale(1.05);
+    background-color: rgb(19, 192, 255);
 }
 
 .detail {

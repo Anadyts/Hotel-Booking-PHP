@@ -164,13 +164,17 @@ function checkDates() {
 
     // ตรวจสอบวันที่เช็คอินและเช็คเอาท์
     if (checkInInput.value && checkOutInput.value) {
+        // ตรวจสอบว่า checkOut อยู่ก่อน checkIn หรือไม่
+        if (checkOutDate < checkInDate) {
+            reserveButton.disabled = true; // ปิดปุ่มเมื่อวันที่ checkout ก่อน checkin
+            return;
+        }
+
         const allDatesBooked = [];
         for (let d = checkInDate; d <= checkOutDate; d.setDate(d.getDate() + 1)) {
             if (isDateBooked(new Date(d))) {
-                
                 allDatesBooked.push(true);
             } else {
-                
                 allDatesBooked.push(false);
             }
         }
@@ -179,13 +183,11 @@ function checkDates() {
         reserveButton.disabled = allDatesBooked.includes(true);
     } else {
         reserveButton.disabled = true; // ปิดปุ่มเมื่อวันที่ยังไม่ได้เลือก
-        
     }
 }
-
-
 
 // เพิ่ม event listener ให้กับ input
 document.getElementById('checkIn').addEventListener('change', checkDates);
 document.getElementById('checkOut').addEventListener('change', checkDates);
+
 </script>
