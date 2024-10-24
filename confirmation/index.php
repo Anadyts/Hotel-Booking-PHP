@@ -21,6 +21,16 @@
     if(isset($_POST['reserve'])){
         $_SESSION['checkIn'] = $_POST['checkIn'];
         $_SESSION['checkOut'] = $_POST['checkOut'];
+        $price = $_SESSION['price'];
+
+        $startDate = new DateTime($_POST['checkIn']);
+        $endDate = new DateTime($_POST['checkOut']);
+
+        $interval = $startDate->diff($endDate);
+        
+        $cost = $price * $interval->days;
+
+        $_SESSION['cost'] = $cost;
     }
     
     if(isset($_POST['confirm'])){
@@ -28,19 +38,21 @@
         $checkOut = $_SESSION['checkOut'];
         $username = $_SESSION['username'];
         $room_number_reserve = $_SESSION['room_number_reserve'];
+        $cost = $_SESSION['cost'];
 
         $sql = "SELECT * FROM user_db WHERE username = '$username'";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $user_id = $row['id'];
 
-        $sql = "INSERT INTO reserve(room_number, check_in_date, check_out_date, user_id)
-                VALUES('$room_number_reserve', '$checkIn', '$checkOut', '$user_id')
+        $sql = "INSERT INTO reserve(room_number, check_in_date, check_out_date, cost,user_id)
+                VALUES('$room_number_reserve', '$checkIn', '$checkOut', '$cost','$user_id')
         ";
         $result = $conn->query($sql);
         if($result){
             $_SESSION['success'] = 'Success';
         }
+        header('location: /Hotel/booking');
     }
 
     if(isset($_POST['cancel'])){
@@ -107,7 +119,7 @@
                     <div class='mid'>
                         <div class='detail'>
                             <h2>{$row['room_type']}</h2>
-                            <h4>Price/Day: {$row['price']}</h4>
+                            <h4>Cost: {$_SESSION['cost']}</h4>
                             <h4>Room Number: {$row['room_number']}</h4>
                             <h4>Capacity: {$row['capacity']}</h4>
                             <h4>Status: {$row['status']}</h4>

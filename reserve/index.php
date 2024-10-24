@@ -82,6 +82,7 @@
                 $status = $row['status'];
                 $img_src = $row['img_src'];
 
+                $_SESSION['price'] = $price;
                 $_SESSION['room_number_reserve'] = $room_number;
                 
                 

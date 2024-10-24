@@ -169,3 +169,17 @@ body{
     background-color: rgb(255, 14, 14);
     transform: scale(1.1);
 }
+
+.mid{
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    display: flex;
+    justify-content: center;
+}
+.revenue{
+    width: 80%;
+    height: 5rem;
+    background-color: white;
+    margin: 3rem;
+    border-radius: 3rem;
+    padding: 3rem;
+}

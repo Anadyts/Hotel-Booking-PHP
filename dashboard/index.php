@@ -67,6 +67,22 @@
             ?>
         </div>
     </nav>
+
+    <div class="mid">
+        
+            <?php
+                echo 
+                "
+                <div class='mid'>
+                    <div class='revenue'>
+                        <h1>Revenue {$_SESSION['revenue']}</h1>
+                    </div>
+                </div>
+                ";
+            
+            ?>
+        
+    </div>
     <div class="container">
         
     <?php
@@ -74,7 +90,7 @@ $sql = "SELECT * FROM user_db WHERE username = '{$_SESSION['username']}'";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $id = $row['id'];
-
+$sum = 0;
 $sql = "SELECT * FROM reserve ";
 $result = $conn->query($sql);
 
@@ -85,6 +101,7 @@ if ($result->num_rows > 0) {
         $roomNumber = $row['room_number'];
         $checkIn = $row['check_in_date'];
         $checkOut = $row['check_out_date'];
+        $cost = $row['cost'];
 
         $sql = "SELECT * FROM rooms WHERE room_number = '$roomNumber'";
         $roomResult = $conn->query($sql);
@@ -93,7 +110,8 @@ if ($result->num_rows > 0) {
         $roomType = $roomRow['room_type'];
         $price = $roomRow['price'];
         $capacity = $roomRow['capacity'];
-        
+        $sum += $cost;
+        $_SESSION['revenue'] = $sum; 
         if(isset($_POST['delete'])){
             $sql = "DELETE FROM reserve WHERE booking_id = $bookingId";
             $result = $conn->query($sql);
@@ -110,7 +128,7 @@ if ($result->num_rows > 0) {
                 <h4>Check-Out Date: {$checkOut}</h4>
                 <h4>Room Type: {$roomType}</h4>
                 <h4>Capacity: {$capacity}</h4>
-                <h4>Price: {$price}</h4>
+                <h4>Cost: {$cost}</h4>
             </div>
             <div class='adminManager'>
                 <form action='' method='post'>
