@@ -7,6 +7,18 @@
     }else{
         header('location: /Hotel/');
     }
+
+    if(isset($_POST['profile'])){
+        header('location: /Hotel/profile');
+    }
+    if(isset($_POST['history'])){
+        header('location: /Hotel/history');
+    }
+
+    if(isset($_POST['logout'])){
+        session_destroy();
+        header('location: /Hotel/');
+    }
 ?>
 
 <!DOCTYPE html>

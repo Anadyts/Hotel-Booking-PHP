@@ -7,6 +7,13 @@
     }else{
         header('location: /Hotel/');
     }
+
+    if(isset($_POST['profile'])){
+        header('location: /Hotel/profile');
+    }
+    if(isset($_POST['history'])){
+        header('location: /Hotel/history');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

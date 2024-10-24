@@ -1,10 +1,13 @@
 <?php
     session_start();
-    if(isset($_SESSION['username'])){
-        if($_SESSION['username'] !== 'Admin'){
-            header('location: /Hotel/');
-        }
-    }else{
+    require('../server.php');
+
+    if(!isset($_SESSION['username'])){
+        header('location: /Hotel/');
+    }
+
+    if(isset($_POST['logout'])){
+        session_destroy();
         header('location: /Hotel/');
     }
 
@@ -64,11 +67,3 @@
 </body>
 </html>
 
-<?php
-    require('../server.php');
-
-    if(isset($_POST['logout'])){
-        session_destroy();
-        header('location: /Hotel/');
-    }
-?>

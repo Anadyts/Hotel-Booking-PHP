@@ -1,5 +1,27 @@
 <?php
     session_start();
+    require('../server.php');
+
+    if(isset($_POST['logout'])){
+        session_destroy();
+        header('location: /Hotel/');
+    }
+
+    if(isset($_POST['delete'])){
+        $roomNumber = $_POST['delete'];
+        $sql = "DELETE FROM rooms WHERE room_number = $roomNumber";
+        $result = $conn->query($sql);
+        header('location: /Hotel/booking');
+        exit();
+    }
+
+    if(isset($_POST['profile'])){
+        header('location: /Hotel/profile');
+    }
+    if(isset($_POST['history'])){
+        header('location: /Hotel/history');
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,6 +109,15 @@
                                                 </form>
                                             </div>
                                         ";
+                                    }else{
+                                        echo 
+                                        "
+                                            <form action='../reserve/index.php' method='post'>
+                                                <div class='customerManager'>
+                                                    <button name='reserve' value='{$row['room_number']}'>Reserve</button>
+                                                </div>
+                                            </form>
+                                        ";
                                     }
                                 }
                     echo "
@@ -101,18 +132,3 @@
 </body>
 </html>
 
-<?php
-    require('../server.php');
-
-    if(isset($_POST['logout'])){
-        session_destroy();
-        header('location: /Hotel/');
-    }
-
-    if(isset($_POST['delete'])){
-        $roomNumber = $_POST['delete'];
-        $sql = "DELETE FROM rooms WHERE room_number = $roomNumber";
-        $result = $conn->query($sql);
-        header('location: /Hotel/booking');
-    }
-?>
