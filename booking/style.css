@@ -147,3 +147,25 @@ h4 {
     grid-template-columns: repeat(5, 1fr);
     text-transform: capitalize;
 }
+
+.adminManager{
+    display: flex;
+    justify-content: center;
+}
+
+.adminManager button{
+    width: 7rem;
+    height: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 3rem;
+    border:none;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.adminManager button:hover{
+    background-color: rgb(255, 14, 14);
+    transform: scale(1.1);
+}

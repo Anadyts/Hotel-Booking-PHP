@@ -68,13 +68,31 @@
                                     <h4>Capacity: {$row['capacity']}</h4>
                                     <h4>Status: {$row['status']}</h4>
                                 </div>
+                                ";
+
+                                if(isset($_SESSION['username'])){
+                                    if($_SESSION['username'] === 'Admin'){
+                                        echo "
+                                            <form action='' method='post' class='adminManager'>
+                                                <button name='Edit' value='{$row['room_number']}'>
+                                                    <i class='bx bx-edit' ></i>
+                                                </button>
+                                                <button name='delete' value='{$row['room_number']}'>
+                                                    <i class='bx bxs-trash'></i>
+                                                </button>
+                                            </form>
+                                        ";
+                                    }
+                                }
+                    echo "
                         </div>
                     </div>
-                ";
+                    ";
             }
         ?>
     </div>
     
+
 </body>
 </html>
 
@@ -84,5 +102,12 @@
     if(isset($_POST['logout'])){
         session_destroy();
         header('location: /Hotel/');
+    }
+
+    if(isset($_POST['delete'])){
+        $roomNumber = $_POST['delete'];
+        $sql = "DELETE FROM rooms WHERE room_number = $roomNumber";
+        $result = $conn->query($sql);
+        header('location: /Hotel/booking');
     }
 ?>
