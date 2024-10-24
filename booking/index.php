@@ -73,14 +73,19 @@
                                 if(isset($_SESSION['username'])){
                                     if($_SESSION['username'] === 'Admin'){
                                         echo "
-                                            <form action='' method='post' class='adminManager'>
-                                                <button name='Edit' value='{$row['room_number']}'>
-                                                    <i class='bx bx-edit' ></i>
-                                                </button>
-                                                <button name='delete' value='{$row['room_number']}'>
-                                                    <i class='bx bxs-trash'></i>
-                                                </button>
-                                            </form>
+                                            <div class='adminManager'>
+                                                <form action='../edit/index.php' method='post'>
+                                                    <button name='edit' value='{$row['room_number']}'>
+                                                        <i class='bx bx-edit' ></i>
+                                                    </button>
+                                                </form>
+                                                
+                                                <form action='' method='post'>
+                                                    <button name='delete' value='{$row['room_number']}'>
+                                                        <i class='bx bxs-trash'></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         ";
                                     }
                                 }
