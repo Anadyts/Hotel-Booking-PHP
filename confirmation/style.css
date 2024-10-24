@@ -101,40 +101,51 @@ body{
     display: block;
 }
 
-.mid{
+.wrapConfirm{
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.wrap {
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    max-width: 1100px;
-    margin: 20px;
+    min-height: 80vh;
 }
 
-.card {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    z-index: -100;
-    transition: 0.2s all ease;
+.wrapConfirm form{
+    background-color: white;
+    width: 300px;
+    height: 270px;
+    border-radius: 3rem;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.47);
+    border: none;
+}
+.buttonWrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+.wrapConfirm button{
+    width: 5rem;
+    height: 2rem;
+    border: none;
+    font-weight: bold;
+    border-radius: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
 }
 
-.card:hover {
-    transform: scale(1.05);
-    transform-origin: center;
-    
+.cancel{
+    background-color: rgb(255, 62, 62);
 }
 
-.pic img {
-    width: 100%;
-    height: auto;
-    border-bottom: 2px solid #ccc;
+.confirm{
+    background-color: rgb(88, 205, 255);
 }
 
 .detail {
-    padding: 16px;
+    text-align: center;
+    padding: 0px;
+    margin-left: 0rem;
 }
 
 .detail h2 {
@@ -146,51 +157,3 @@ body{
     margin: 8px 0;
 }
 
-.rooms{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    text-transform: capitalize;
-}
-
-.reserveForm{
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    margin: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.reserveForm input{
-    width: 20rem;
-    height: 3rem;
-    font-size: 30px;
-    font-weight: bold;
-    border-radius: 3rem;
-    border: none;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
-    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.42);
-}
-
-.reserveForm form{
-    display: flex;
-}
-
-.reserveForm button{
-    width: 10rem;
-    height: 3rem;
-    border-radius: 3rem;
-    font-weight: bold;
-    border: none;
-    background-color: rgb(55, 145, 255);
-    transition: all .2s ease;
-    cursor: pointer;
-    box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.42);
-}
-
-.reserveForm button:hover{
-    transform: scale(1.1);
-    background-color: rgb(0, 111, 230);
-}
