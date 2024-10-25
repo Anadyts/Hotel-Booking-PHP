@@ -70,17 +70,7 @@
 
     <div class="mid">
         
-            <?php
-                echo 
-                "
-                <div class='mid'>
-                    <div class='revenue'>
-                        <h1>Revenue {$_SESSION['revenue']}</h1>
-                    </div>
-                </div>
-                ";
             
-            ?>
         
     </div>
     <div class="container">
@@ -145,9 +135,16 @@ if ($result->num_rows > 0) {
 
 ?>
 
-        
-        
+<?php
+    echo 
+    "
+        <div class='mid'>
+            <div class='revenue'>
+                <h1>Revenue {$_SESSION['revenue']}</h1>
+            </div>
+        </div>
+    ";
+?>
     </div>
 </body>
 </html>
-
