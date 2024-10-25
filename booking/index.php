@@ -69,64 +69,78 @@
             ?>
         </div>
     </nav>
-
+    <div class="wrapSearch">
+        <form method='post' action=''>
+            <div class='search'>
+                <input type='text' name='search' placeholder="Search rooms...">
+                <button name='searchSubmit'><i class='bx bx-search-alt-2'></i></button>
+            </div>
+        </form>
+    </div>
     <div class="rooms">
         <?php
-            require('../server.php');
+        // Check if search is submitted
+        if (isset($_POST['searchSubmit'])) {
+            $searchTerm = $_POST['search'];
+            // Escape the search term to prevent SQL injection
+            $searchTerm = mysqli_real_escape_string($conn, $searchTerm);
+            $sql = "SELECT * FROM rooms WHERE room_type LIKE '%$searchTerm%' OR room_number LIKE '%$searchTerm%'";
+        } else {
+            // Default query to get all rooms
             $sql = "SELECT * FROM rooms";
-            $result = $conn->query($sql);
+        }
 
-            while($row = mysqli_fetch_assoc($result)){
-                echo "
-                    <div class='wrap'>
-                        <div class='card'>
-                                <div class='pic'>
-                                    <img src='../upload/{$row['img_src']}'>
-                                </div>
-                                <div class='detail'>
-                                    <h2>{$row['room_type']}</h2>
-                                    <h4>Price/Day: {$row['price']}</h4>
-                                    <h4>Room Number: {$row['room_number']}</h4>
-                                    <h4>Capacity: {$row['capacity']}</h4>
-                                    <h4>Status: {$row['status']}</h4>
-                                </div>
-                                ";
+        $result = $conn->query($sql);
 
-                                if(isset($_SESSION['username'])){
-                                    if($_SESSION['username'] === 'Admin'){
-                                        echo "
-                                            <div class='adminManager'>
-                                                <form action='../edit/index.php' method='post'>
-                                                    <button name='edit' value='{$row['room_number']}'>
-                                                        <i class='bx bx-edit' ></i>
-                                                    </button>
-                                                </form>
-                                                
-                                                <form action='' method='post'>
-                                                    <button name='delete' value='{$row['room_number']}'>
-                                                        <i class='bx bxs-trash'></i>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        ";
-                                    }else{
-                                        echo 
-                                        "
-                                            <form action='../reserve/index.php' method='post'>
-                                                <div class='customerManager'>
-                                                    <button name='reserve' value='{$row['room_number']}'>Reserve</button>
-                                                </div>
-                                            </form>
-                                        ";
-                                    }
-                                }
-                    echo "
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "        
+                <div class='wrap'>
+                    <div class='card'>
+                        <div class='pic'>
+                            <img src='../upload/{$row['img_src']}'>
                         </div>
-                    </div>
+                        <div class='detail'>
+                            <h2>{$row['room_type']}</h2>
+                            <h4>Price/Day: {$row['price']}</h4>
+                            <h4>Room Number: {$row['room_number']}</h4>
+                            <h4>Capacity: {$row['capacity']}</h4>
+                            <h4>Status: {$row['status']}</h4>
+                        </div>";
+
+            if (isset($_SESSION['username'])) {
+                if ($_SESSION['username'] === 'Admin') {
+                    echo "
+                        <div class='adminManager'>
+                            <form action='../edit/index.php' method='post'>
+                                <button name='edit' value='{$row['room_number']}'>
+                                    <i class='bx bx-edit'></i>
+                                </button>
+                            </form>
+                            <form action='' method='post'>
+                                <button name='delete' value='{$row['room_number']}'>
+                                    <i class='bx bxs-trash'></i>
+                                </button>
+                            </form>
+                        </div>
                     ";
+                } else {
+                    echo "
+                        <form action='../reserve/index.php' method='post'>
+                            <div class='customerManager'>
+                                <button name='reserve' value='{$row['room_number']}'>Reserve</button>
+                            </div>
+                        </form>
+                    ";
+                }
             }
+            echo "
+                    </div>
+                </div>
+            ";
+        }
         ?>
     </div>
+
     
 
 </body>
